@@ -9,7 +9,7 @@ namespace Nuoli_kauppa
     public enum KarkiTyyppi
     {
         Puu,
-        Teras,
+        Teräs,
         Timantti
     }
 
@@ -22,9 +22,9 @@ namespace Nuoli_kauppa
 
     public class Nuoli
     {
-        public KarkiTyyppi karki;
-        public PeraTyyppi pera;
-        public double pituus;
+        private KarkiTyyppi karki;
+        private PeraTyyppi pera;
+        private double pituus;
 
         public Nuoli(KarkiTyyppi k, PeraTyyppi p, double pit)
         {
@@ -33,40 +33,40 @@ namespace Nuoli_kauppa
             pituus = pit;
         }
 
+        public KarkiTyyppi GetKarki()
+        {
+            return karki;
+        }
+
+        public PeraTyyppi GetPera()
+        {
+            return pera;
+        }
+
+        public double GetPituus()
+        {
+            return pituus;
+        }
+
         public double PalautaHinta()
         {
             double hinta = 0;
 
-            // Kärjen hinta
             if (karki == KarkiTyyppi.Puu)
-            {
-                hinta = hinta + 3;
-            }
-            else if (karki == KarkiTyyppi.Teras)
-            {
-                hinta = hinta + 5;
-            }
+                hinta += 3;
+            else if (karki == KarkiTyyppi.Teräs)
+                hinta += 5;
             else if (karki == KarkiTyyppi.Timantti)
-            {
-                hinta = hinta + 50;
-            }
+                hinta += 50;
 
-            // Perän hinta
             if (pera == PeraTyyppi.Lehti)
-            {
-                hinta = hinta + 0;
-            }
+                hinta += 0;
             else if (pera == PeraTyyppi.KananSulka)
-            {
-                hinta = hinta + 1;
-            }
+                hinta += 1;
             else if (pera == PeraTyyppi.KotkanSulka)
-            {
-                hinta = hinta + 5;
-            }
+                hinta += 5;
 
-            // Varren hinta
-            hinta = hinta + (pituus * 0.05);
+            hinta += pituus * 0.05;
 
             return hinta;
         }
